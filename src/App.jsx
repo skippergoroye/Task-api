@@ -2,25 +2,76 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 
-
+// const url =  https://jsonplaceholder.typicode.com/posts?_limit=8
 
 function App() {
-  const [data, setData] = useState([])
+  const [item, setItem] = useState([])
 
   // useEffect(() => {
   //   fetch('https://gorest.co.in/public/v2/users')
   //     .then(response => response.json())
-  //     .then(data => setData(data))
+  //     .then(item => setItem(item))
 
-  //     console.log(data)
+  //     console.log(item)
+
   // }, [])
 
+   
+
+
+
+  // useEffect(() => {
+  //      fetch('https://gorest.co.in/public/v2/users')
+  //         .then(response => response.json())
+  //         .then(data => setData(data))
+  //     console.log(data)
+  // },[])
+
+
+
+  // Using the async/await syntax
+
+  // useEffect(() => { 
+  //   async function getData() {
+  //     const response = await fetch(
+  //       `https://jsonplaceholder.typicode.com/posts?_limit=10`
+  //     )
+  
+  //     console.log(response)
+  //   }
+  //   getData()
+  // }, [])
+
+
+
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await fetch(
+  //       `https://jsonplaceholder.typicode.com/posts?_limit=10`
+  //     )
+  //     let actualData = await response.json();
+  
+  //     console.log(actualData) 
+  //   }
+  //   getData()
+  // }, [])
+
+
   useEffect(() => {
-       fetch('https://gorest.co.in/public/v2/users')
-          .then(response => response.json())
-          .then(data => setData(data))
-      console.log(data)
-  },[])
+    fetchApi()
+  }, [])
+
+
+  const fetchApi = async () => {
+    const res = await fetch('https://gorest.co.in/public/v2/users')
+
+    // convert to json 
+    // console.log(res.json())
+    
+    const item = await res.json();
+    setItem(item)
+  }
 
  
 
@@ -28,8 +79,8 @@ function App() {
     <>
      <div>
        <h1>hello</h1>
-       {/* <ul>
-        {data && data.map(({ id, name, email, gender, status, title }) => (
+       <ul>
+        {item && item.map(({ id, name, email, gender, status, title }) => (
             <li key={id}>
               <h2>Name: {name}</h2>
               <h5>Email: {email}</h5>
@@ -37,10 +88,10 @@ function App() {
               <h5>Status: {status}</h5>
             </li>
         ))}
-      </ul> */}
+      </ul>
 
      
-     <h1>Method Two</h1>
+     {/* <h1>Method Two</h1>
       <ul>
         {data && data.map((item, index) => (
             <li key={index}>
@@ -50,7 +101,7 @@ function App() {
               <h5>Status: {item.status}</h5>
             </li>
         ))}
-      </ul>
+      </ul> */}
 
 
      </div>
