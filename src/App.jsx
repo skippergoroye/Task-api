@@ -12,9 +12,12 @@ function App() {
   //     .then(response => response.json())
   //     .then(item => setItem(item))
 
-  //     console.log(item)
+  //     // console.log(item)
 
   // }, [])
+  //    console.log(item)
+
+  
 
    
 
@@ -58,6 +61,7 @@ function App() {
   // }, [])
 
 
+
   useEffect(() => {
     fetchApi()
   }, [])
@@ -69,9 +73,16 @@ function App() {
     // convert to json 
     // console.log(res.json())
     
-    const item = await res.json();
-    setItem(item)
+    const data = await res.json();
+    setItem(data)
+    // console.log(data)
   }
+
+
+
+
+
+
 
  
 
